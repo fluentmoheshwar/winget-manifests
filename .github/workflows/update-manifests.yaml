@@ -13,9 +13,6 @@ jobs:
       contents: write
       
     steps:
-      - name: Delete old manifests
-        run: rm -rf manifests
-        
       - name: Checkout to winget-pkgs repo
         uses: actions/checkout@v3
         with:
@@ -29,6 +26,9 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
+
+      - name: Delete old manifests
+        run: rm -rf manifests
 
       - name: Copy manifests from /tmp/manifests to this repo
         run: mkdir -p manifests/m/MoheshwarAmarnathBiswas && cp -r /tmp/manifests manifests/m/MoheshwarAmarnathBiswas
