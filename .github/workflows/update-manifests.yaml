@@ -1,0 +1,31 @@
+name: Update Manifests from winget-pkgs repo
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+jobs:
+  update-manifests:
+    name: Download Manifests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout to winget-pkgs repo
+        uses: actions/checkout@v3
+        with:
+            repository: microsoft/winget-pkgs
+            ref: master
+            
+      - name: Copy manifests to /tmp/manifests
+        run: cp -r manifests/m/MoheshwarAmarnathBiswas /tmp/manifests
+
+      - name: Checkout to this repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Copy manifests from /tmp/manifests to this repo
+        run: mkdir -p manifests/m/MoheshwarAmarnathBiswas && cp -r /tmp/manifests manifests/m/MoheshwarAmarnathBiswas
+          
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Updated Manifests from winget-pkgs
