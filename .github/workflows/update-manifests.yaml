@@ -13,6 +13,9 @@ jobs:
       contents: write
       
     steps:
+      - name: Delete old manifests
+        run: rm -rf manifests
+        
       - name: Checkout to winget-pkgs repo
         uses: actions/checkout@v3
         with:
