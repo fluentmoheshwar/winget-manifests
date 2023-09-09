@@ -4,10 +4,14 @@ on:
   schedule:
     - cron: "0 */6 * * *"
   workflow_dispatch:
+  
 jobs:
   update-manifests:
-    name: Download Manifests
+    name: Update Manifests
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
     steps:
       - name: Checkout to winget-pkgs repo
         uses: actions/checkout@v3
