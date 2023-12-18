@@ -14,7 +14,7 @@ jobs:
       
     steps:
       - name: Checkout to winget-pkgs repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
             repository: microsoft/winget-pkgs
             ref: master
@@ -23,7 +23,7 @@ jobs:
         run: cp -r manifests/m/MoheshwarAmarnathBiswas /tmp/manifests
 
       - name: Checkout to this repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
 
