@@ -33,6 +33,6 @@ jobs:
       - name: Copy manifests from /tmp/manifests to this repo
         run: mkdir -p manifests/m/MoheshwarAmarnathBiswas && cp -r /tmp/manifests manifests/m/MoheshwarAmarnathBiswas
           
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Updated Manifests from winget-pkgs
